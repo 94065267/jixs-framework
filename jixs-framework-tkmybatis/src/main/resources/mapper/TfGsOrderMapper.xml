@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jixs.tkmybatis.mapper.TfGsOrderMapper">
+  <resultMap id="BaseResultMap" type="com.jixs.tkmybatis.po.TfGsOrder">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ORD_ID" jdbcType="VARCHAR" property="ordId" />
+    <result column="PROINS_ID" jdbcType="VARCHAR" property="proinsId" />
+    <result column="EXT_ORD_ID" jdbcType="VARCHAR" property="extOrdId" />
+    <result column="GS_TYPE" jdbcType="VARCHAR" property="gsType" />
+    <result column="GS_PRI" jdbcType="VARCHAR" property="gsPri" />
+    <result column="PROVINCE_ID" jdbcType="VARCHAR" property="provinceId" />
+    <result column="CITY_ID" jdbcType="VARCHAR" property="cityId" />
+    <result column="AREA_ID" jdbcType="VARCHAR" property="areaId" />
+    <result column="ORD_SOURCE" jdbcType="VARCHAR" property="ordSource" />
+    <result column="ACCEPT_TIME" jdbcType="TIMESTAMP" property="acceptTime" />
+    <result column="ACCEPT_STAFF_ID" jdbcType="VARCHAR" property="acceptStaffId" />
+    <result column="ACCEPT_STAFF_NAME" jdbcType="VARCHAR" property="acceptStaffName" />
+    <result column="ACCEPT_DEPART_ID" jdbcType="VARCHAR" property="acceptDepartId" />
+    <result column="ACCEPT_DEPART_NAME" jdbcType="VARCHAR" property="acceptDepartName" />
+    <result column="ACCEPT_PHONE" jdbcType="VARCHAR" property="acceptPhone" />
+    <result column="STS" jdbcType="VARCHAR" property="sts" />
+    <result column="OLD_STS" jdbcType="VARCHAR" property="oldSts" />
+    <result column="IS_FAULT" jdbcType="INTEGER" property="isFault" />
+    <result column="IS_MAJOR_FAULT" jdbcType="INTEGER" property="isMajorFault" />
+    <result column="IS_GROUP_FAULT" jdbcType="INTEGER" property="isGroupFault" />
+    <result column="REPEAT_APPLY_NUM" jdbcType="INTEGER" property="repeatApplyNum" />
+    <result column="REPEAT_FAULT_NUM" jdbcType="INTEGER" property="repeatFaultNum" />
+    <result column="REDISPATCH_FLAG" jdbcType="INTEGER" property="redispatchFlag" />
+    <result column="STS_TIME" jdbcType="TIMESTAMP" property="stsTime" />
+    <result column="FINISH_TIME" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="ALERT_TIME" jdbcType="TIMESTAMP" property="alertTime" />
+    <result column="WARN_TIME" jdbcType="TIMESTAMP" property="warnTime" />
+    <result column="OVER_TIME" jdbcType="TIMESTAMP" property="overTime" />
+    <result column="LIMIT_TIME" jdbcType="TIMESTAMP" property="limitTime" />
+    <result column="IS_RESERVAT" jdbcType="INTEGER" property="isReservat" />
+    <result column="RESERVAT_TIME" jdbcType="TIMESTAMP" property="reservatTime" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="SERVICE_NUM" jdbcType="VARCHAR" property="serviceNum" />
+    <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="TENANT_ID" jdbcType="VARCHAR" property="tenantId" />
+    <result column="REMINDER_NUM" jdbcType="INTEGER" property="reminderNum" />
+  </resultMap>
+</mapper>

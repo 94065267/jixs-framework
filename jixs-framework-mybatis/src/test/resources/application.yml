@@ -1,0 +1,38 @@
+#数据库配置
+spring:
+  application:
+    name: jixs-mybatis
+  datasource:
+    url: jdbc:mysql://172.18.233.142:3300/iomdb2?useUnicode=true&characterEncoding=utf-8
+    username: kfiomadm
+    password: kfiomadm
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 10
+#mybatis配置
+mybatis:
+  configuration:
+    #打印sql语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #二级缓存开启总开关，默认true，每个mapper需要开启二级缓存还需要单独设置
+    cache-enabled: true
+    #全局参数：开启延迟加载功能，默认不开启（针对级联来说的，用的时候才加载）
+    lazy-loading-enabled: false
+    #全局参数：当有多层级联时，是否按需加载：默认是按照层级全加载完毕的，false的只按照需要的加载，不用全部加载
+    #mapper文件中 association和 collection标签里的 fetchType 属性值会覆盖掉此值的设置，
+    #fetchType 属性值（eager:即时加载对应true,lazy:按需加载对应false）默认是配置文件的，属性设置了值之后会覆盖掉配置文件的值
+    aggressive-lazy-loading: false
+    #本地缓存级别：SESSION（默认级别） 同一sqlsession中同一mapper的同一方法并且相同参数共享数据， statement级别缓存只对当前执行的这一个statement有效
+    local-cache-scope: session
+#    default-executor-type:
+  #mapper.xml文件
+  mapper-locations: classpath*:mapper/*.xml
+#  check-config-location: true
+  type-handlers-package: com.jixs.mybatis.typehandler
+pagehelper:
+  helper-dialect: mysql
+  reasonable: "true"
+  support-methods-arguments: "true"
+  params: count=countSql
+  page-size-zero: "true"
