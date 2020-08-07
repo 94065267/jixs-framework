@@ -5,8 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.jixs.MybatisBootstrap;
 import com.jixs.mybatis.mapper.TUserMapper;
 import com.jixs.mybatis.po.TUser;
+import com.jixs.mybatis.thread.UserThread;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.assertj.core.util.DateUtil;
@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author: jixs
@@ -36,15 +37,15 @@ public class MybatisTest {
     @Test
     public void add() {
         TUser user = new TUser();
-        user.setUserId("2020080404");
-        user.setUserName("2020080404");
-        user.setUserCode("2020080404");
+        user.setUserId("2020080601");
+        user.setUserName("2020080601");
+        user.setUserCode("2020080601");
         //枚举类处理器,修改pojo对象改成enum类型
 //        user.setUserSex(SexEnum.UNKNOWN);
         user.setUserSex(1);
-        user.setUserAddress("2020080404");
-        user.setUserTel("2020080404");
-        user.setNote("2020080404");
+        user.setUserAddress("2020080601");
+        user.setUserTel("2020080601");
+        user.setNote("2020080601");
         user.setCreateTime(DateUtil.now());
         int cnt = tUserMapper.insert(user);
         log.info("cnt = {}", cnt);
@@ -58,14 +59,12 @@ public class MybatisTest {
 
     @Test
     public void select() {
-//        PageHelper.startPage(3, 10, false);
         TUser userParam = new TUser();
-        userParam.setNote("测试");
-        userParam.setCreateTimeStart(DateUtil.yesterday());
-        userParam.setCreateTimeEnd(DateUtil.now());
-//        List<TUser> list = tUserMapper.select(userParam);
-        //分页查询
-        List<TUser> list = tUserMapper.select(userParam, new RowBounds(20, 10));
+//        userParam.setNote("测试");
+//        userParam.setCreateTimeStart(DateUtil.yesterday());
+//        userParam.setCreateTimeEnd(DateUtil.now());
+        List<TUser> list = tUserMapper.select(userParam);
+//        List<TUser> list = tUserMapper.select(userParam, new RowBounds(0, 10));
         log.info("list = {}", JSONArray.toJSONString(list));
     }
 

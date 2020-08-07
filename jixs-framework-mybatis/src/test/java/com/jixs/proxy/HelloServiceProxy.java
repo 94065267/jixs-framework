@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
 
 /**
@@ -30,6 +31,10 @@ public class HelloServiceProxy<T> implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         log.info("JDK动态代理：{}，method={}", proxy.getClass().getName(), method.getName());
+        log.info("method.getModifiers() = " + method.getModifiers());
+        log.info("" + (Modifier.ABSTRACT | Modifier.PUBLIC | Modifier.STATIC));
+        log.info("" + ((method.getModifiers() & (Modifier.ABSTRACT | Modifier.PUBLIC | Modifier.STATIC)) == Modifier.PUBLIC));
+        log.info("" + method.getDeclaringClass().isInterface());
         return method.invoke(this.target, args);
     }
 

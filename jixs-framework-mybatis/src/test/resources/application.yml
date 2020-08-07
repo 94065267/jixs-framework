@@ -25,14 +25,16 @@ mybatis:
     aggressive-lazy-loading: false
     #本地缓存级别：SESSION（默认级别） 同一sqlsession中同一mapper的同一方法并且相同参数共享数据， statement级别缓存只对当前执行的这一个statement有效
     local-cache-scope: session
-#    default-executor-type:
+  #    default-executor-type:
   #mapper.xml文件
   mapper-locations: classpath*:mapper/*.xml
 #  check-config-location: true
   type-handlers-package: com.jixs.mybatis.typehandler
-pagehelper:
-  helper-dialect: mysql
-  reasonable: "true"
-  support-methods-arguments: "true"
-  params: count=countSql
-  page-size-zero: "true"
+  # mybatis配置文件，这个配置跟configuration不能同时配置
+#  config-location: classpath:mybatis\mybatis.xml
+#pagehelper:
+#  helper-dialect: mysql
+#  reasonable: "true"
+#  support-methods-arguments: "true"
+#  params: count=countSql
+#  page-size-zero: "true"
