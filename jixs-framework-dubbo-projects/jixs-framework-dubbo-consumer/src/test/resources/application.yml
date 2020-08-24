@@ -1,0 +1,16 @@
+#数据库配置
+spring:
+  application:
+    name: jixs-framework-dubbo-consumer
+  datasource:
+    url: jdbc:mysql://172.18.233.142:3300/iomdb2?useUnicode=true&characterEncoding=utf-8
+    username: kfiomadm
+    password: kfiomadm
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 10
+  dubbo:
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    scan: com.jixs.framework.dubbo.api
