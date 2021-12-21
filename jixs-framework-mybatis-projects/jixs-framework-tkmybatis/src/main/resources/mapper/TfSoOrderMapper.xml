@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jixs.tkmybatis.mapper.TfSoOrderMapper">
+  <resultMap id="BaseResultMap" type="com.jixs.tkmybatis.po.TfSoOrder">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ORD_ID" jdbcType="VARCHAR" property="ordId" />
+    <result column="ACC_NBR" jdbcType="VARCHAR" property="accNbr" />
+    <result column="LOCAL_NET_ID" jdbcType="VARCHAR" property="localNetId" />
+    <result column="AREA_ID" jdbcType="VARCHAR" property="areaId" />
+    <result column="BRANCH_NO" jdbcType="VARCHAR" property="branchNo" />
+    <result column="O_BRANCH_NO" jdbcType="VARCHAR" property="oBranchNo" />
+    <result column="ORDAI_PROD_ID" jdbcType="VARCHAR" property="ordaiProdId" />
+    <result column="O_PROD_ID" jdbcType="VARCHAR" property="oProdId" />
+    <result column="ACTION_ID" jdbcType="VARCHAR" property="actionId" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="ORD_TYPE" jdbcType="VARCHAR" property="ordType" />
+    <result column="PRO_STARTMODE" jdbcType="VARCHAR" property="proStartmode" />
+    <result column="NET_TYPE" jdbcType="VARCHAR" property="netType" />
+    <result column="EXT_ORD_ID" jdbcType="VARCHAR" property="extOrdId" />
+    <result column="ACCEPT_TIME" jdbcType="TIMESTAMP" property="acceptTime" />
+    <result column="ICCID" jdbcType="VARCHAR" property="iccid" />
+    <result column="PRIORITY" jdbcType="VARCHAR" property="priority" />
+    <result column="MESSAGE_ID" jdbcType="VARCHAR" property="messageId" />
+    <result column="ORDT_ID" jdbcType="VARCHAR" property="ordtId" />
+    <result column="PROINS_ID" jdbcType="VARCHAR" property="proinsId" />
+    <result column="ORD_GROUP_ID" jdbcType="VARCHAR" property="ordGroupId" />
+    <result column="ORD_STS" jdbcType="VARCHAR" property="ordSts" />
+    <result column="ORD_STS_TIME" jdbcType="TIMESTAMP" property="ordStsTime" />
+    <result column="ORD_CREATE_TIME" jdbcType="TIMESTAMP" property="ordCreateTime" />
+    <result column="NOTES" jdbcType="VARCHAR" property="notes" />
+    <result column="NET_CODE" jdbcType="VARCHAR" property="netCode" />
+    <result column="O_NET_CODE" jdbcType="VARCHAR" property="oNetCode" />
+    <result column="O_ACC_NBR" jdbcType="VARCHAR" property="oAccNbr" />
+    <result column="PROVINCE_ID" jdbcType="VARCHAR" property="provinceId" />
+    <result column="PARTITION_NO" jdbcType="BIGINT" property="partitionNo" />
+    <result column="TENANT_ID" jdbcType="VARCHAR" property="tenantId" />
+    <result column="SAVE_CODE" jdbcType="VARCHAR" property="saveCode" />
+  </resultMap>
+</mapper>
