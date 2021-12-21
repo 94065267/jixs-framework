@@ -11,8 +11,10 @@ spring:
       minimum-idle: 1
       maximum-pool-size: 10
   dubbo:
+    #如果不适用注册中心，registry直接配置N/A ，否则配置address即可
+#    registry: N/A
     registry:
-      address: zookeeper://127.0.0.1:2181
+      address: zookeeper://127.0.0.1:2181 #?register=false
     protocol:
       name: dubbo
       port: 20880

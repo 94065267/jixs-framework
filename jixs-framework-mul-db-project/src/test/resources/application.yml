@@ -1,3 +1,8 @@
+logging:
+  level:
+    root: debug
+    com.sitech.iom: debug
+    com.sitech.ijcf: debug
 #数据库配置
 spring:
   application:
@@ -10,6 +15,23 @@ spring:
     hikari:
       minimum-idle: 1
       maximum-pool-size: 10
+    db1:
+      jdbc-url: jdbc:mysql://172.18.231.40:8066/iomord?useUnicode=true&characterEncoding=utf-8
+      username: iomadm
+      password: iomadm
+      driver-class-name: com.mysql.jdbc.Driver
+      hikari:
+        minimum-idle: 1
+        maximum-pool-size: 10
+    db2:
+      jdbc-url: jdbc:mysql://172.18.231.40:8066/iomwo?useUnicode=true&characterEncoding=utf-8
+      username: iomadm
+      password: iomadm
+      driver-class-name: com.mysql.jdbc.Driver
+      hikari:
+        minimum-idle: 1
+        maximum-pool-size: 10
+
 #mybatis配置
 mybatis:
   configuration:

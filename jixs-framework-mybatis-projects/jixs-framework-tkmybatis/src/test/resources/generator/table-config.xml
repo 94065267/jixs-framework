@@ -15,9 +15,9 @@
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://172.18.233.142:3300/iomdb2"
-                        userId="kfiomadm"
-                        password="kfiomadm">
+                        connectionURL="jdbc:mysql://172.18.231.40:8066/iomord"
+                        userId="iomadm"
+                        password="iomadm">
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetJavaProject}"/>
@@ -26,7 +26,7 @@
 
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER"/>
 
-        <table tableName="TEST_GIS_SHARDING"></table>
+        <table tableName="tf_so_order"></table>
 
     </context>
 </generatorConfiguration>

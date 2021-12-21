@@ -12,6 +12,7 @@
         <module>jixs-framework-common</module>
         <module>jixs-framework-dubbo-projects</module>
         <module>jixs-framework-mybatis-projects</module>
+        <module>jixs-framework-mul-db-project</module>
     </modules>
 
     <parent>
@@ -31,6 +32,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
 
         <!-- json工具 -->
@@ -76,9 +81,9 @@
 
     <repositories>
         <repository>
-            <id>nexus</id>
-            <name>nexus</name>
-            <url>http://172.18.234.227:8081/nexus/content/groups/public/</url>
+            <id>nexus2</id>
+            <name>nexus2</name>
+            <url>http://git.si-tech.com.cn:8088/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -87,29 +92,16 @@
             </snapshots>
         </repository>
         <repository>
-            <id>edas-oss-central</id>
-            <name>taobao mirror central</name>
-            <url>http://edas-public.oss-cn-hangzhou.aliyuncs.com/repository</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
+            <id>nexus3</id>
+            <name>nexus3</name>
+            <url>https://repo.maven.apache.org/maven2</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
-
-    <distributionManagement>
-        <repository>
-            <id>si-releases</id>
-            <name>Si-tech Project Release</name>
-            <url>http://172.18.234.227:8081/nexus/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>si-snapshots</id>
-            <name>Si-tech Project SNAPSHOTS</name>
-            <url>http://172.18.234.227:8081/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 
 </project>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sitech.iom.data.dao.mapper.so.TdSoSysconfigMapper">
+    <resultMap id="BaseResultMap" type="com.jixs.dao.po.db1.TdSoSysconfig">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="PARA_ID" jdbcType="VARCHAR" property="paraId"/>
+        <id column="PARA_TYPE" jdbcType="VARCHAR" property="paraType"/>
+        <result column="PARA_NAME" jdbcType="VARCHAR" property="paraName"/>
+        <result column="PARA_DESC" jdbcType="VARCHAR" property="paraDesc"/>
+        <result column="PARA_VALUE" jdbcType="VARCHAR" property="paraValue"/>
+        <result column="FST_VALUE" jdbcType="VARCHAR" property="fstValue"/>
+        <result column="SND_VALUE" jdbcType="VARCHAR" property="sndValue"/>
+        <result column="TRD_VALUE" jdbcType="VARCHAR" property="trdValue"/>
+        <result column="FRTH_VALUE" jdbcType="VARCHAR" property="frthValue"/>
+        <result column="FIFTH_VALUE" jdbcType="VARCHAR" property="fifthValue"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="STS" jdbcType="VARCHAR" property="sts"/>
+        <result column="STS_TIME" jdbcType="TIMESTAMP" property="stsTime"/>
+        <result column="UPDATE_STAFF" jdbcType="VARCHAR" property="updateStaff"/>
+        <result column="TENANT_ID" jdbcType="VARCHAR" property="tenantId"/>
+        <result column="BELONG" jdbcType="VARCHAR" property="belong"/>
+    </resultMap>
+
+</mapper>
