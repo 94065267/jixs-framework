@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
  * @date 2020-08-21
  */
 @Slf4j
-@Service(interfaceClass = UserService.class,group = "groupUser")
+@Service(interfaceClass = UserService.class, group = "groupUser")
 @Component
 public class GroupUserServiceImpl implements UserService {
     @Override
     public String getNameById(String userId) {
-        log.info("入参userId={}",userId);
-        return userId + "的姓名就是group-"+userId;
+        log.info("入参userId={}", userId);
+        return userId + "的姓名就是group-" + userId;
     }
 }

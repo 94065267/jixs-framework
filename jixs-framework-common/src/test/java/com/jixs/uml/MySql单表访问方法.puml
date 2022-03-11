@@ -1,0 +1,89 @@
+@startmindmap
+'建表语句
+'CREATE TABLE single_table (
+'    id INT NOT NULL AUTO_INCREMENT,
+'    key1 VARCHAR(100),
+'    key2 INT,
+'    key3 VARCHAR(100),
+'    key_part1 VARCHAR(100),
+'    key_part2 VARCHAR(100),
+'    key_part3 VARCHAR(100),
+'    common_field VARCHAR(100),
+'   PRIMARY KEY (id),
+'    KEY idx_key1 (key1),
+'    UNIQUE KEY idx_key2 (key2),
+'    KEY idx_key3 (key3),
+'    KEY idx_key_part(key_part1, key_part2, key_part3)
+') Engine=InnoDB CHARSET=utf8;
+
+title MySql单表访问方法
+
+* MySql单表访问方法
+
+** const
+***_ 主键列或者唯一二级索引列和一个常数进行等值比较时才有效
+***_ 如果主键或者唯一二级索引是由多个列构成的话，索引中的每一个列都需要与常数进行等值比较
+***_ 如：SELECT * FROM single_table WHERE id = 1438;
+
+** ref
+***_ 采用二级索引等值比较查询
+***_ 如：SELECT * FROM single_table WHERE key1 = 'abc'
+
+** ref_or_null
+***_ 二级索引等值比较或者该列的值为null的记录都取出来
+***_ 如：SELECT * FROM single_table WHERE key1 = 'abc' OR key1 IS NULL;
+
+** range
+***_ 索引列需要匹配某个或某些范围的值（可以是聚簇索引，也可以是二级索引）
+***_ 如：SELECT * FROM single_table WHERE key2 IN (1438, 6328) OR (key2 >= 38 AND key2 <= 79);
+
+** index
+***_ 条件列在索引列里，且查询的结果列也在索引列里，不需要回表操作的查询方法
+***_ 如：SELECT key_part1, key_part2, key_part3 FROM single_table WHERE key_part2 = 'abc';
+***_: key_part2不是索引列的最左侧，无法用ref或者range，
+ 但是结果列都在索引列里，只需要查询二级索引的叶子节点获取跟key_part2值对应的记录即可，
+ 不需要回到聚簇索引上获取其他其他信息，也就是不需要所谓的回表操作
+;
+
+** all
+***_ 使用全表扫描执行查询的方式
+
+*** Sort-Union合并
+****_ 先按照二级索引记录的主键值进行排序，之后按照Union索引合并方式执行的方式称之为Sort-Union索引合并
+
+** 访问方法注意
+***_ 1、二级索引 + 回表
+***_ 2、明确range访问方法使用的范围区间
+***_ 3、所有搜索条件都可以使用某个索引的情况
+***_ 4、有的搜索条件无法使用索引的情况
+****_ 一个使用到索引的搜索条件和没有使用该索引的搜索条件使用OR连接起来后是无法使用该索引的
+****_ 如： SELECT * FROM single_table WHERE key2 > 100 OR common_field = 'abc';
+***_ 5、复杂搜索条件下找出范围匹配的区间
+
+** 索引合并
+*** Intersection合并
+****_ 某个查询可以使用多个二级索引，将从多个二级索引中查询到的结果取交集
+****_ SELECT * FROM single_table WHERE key1 = 'a' AND key3 = 'b';
+****_: 1、二级索引列是等值匹配的情况，对于联合索引来说，在联合索引中的每个列都必须等值匹配，不能出现只匹配部分列的情况
+ 如：SELECT * FROM single_table WHERE key1 = 'a' AND key_part1 = 'a' AND key_part2 = 'b' AND key_part3 = 'c'
+ 但是下面的就不可以使用Intersection合并
+ SELECT * FROM single_table WHERE key1 > 'a' AND key_part1 = 'a' AND key_part2 = 'b' AND key_part3 = 'c'
+ SELECT * FROM single_table WHERE key1 = 'a' AND key_part1 = 'a'
+ 2、主键列可以是范围匹配
+ 如：SELECT * FROM single_table WHERE id > 100 AND key1 = 'a'
+ ;
+
+*** union 合并
+****_ 既符合某个搜索条件的记录取出来，也把符合另外的某个搜索条件的记录取出来，我们说这些不同的搜索条件之间是OR关系。
+****_ SELECT * FROM single_table WHERE key1 = 'a' OR key3 = 'b'
+****_: 1、二级索引列是等值匹配的情况，对于联合索引来说，在联合索引中的每个列都必须等值匹配，不能出现只出现匹配部分列的情况
+ 2、主键列可以是范围匹配
+ 3、使用Intersection索引合并的搜索条件
+;
+
+*** 注意
+****_ 联合索引替代Intersection索引合并
+****_ SELECT * FROM single_table WHERE key1 = 'a' AND key3 = 'b';
+****_ 可以建立联合索引key1+key3，但是需要考虑单独使用key3查询的情况，可能还得单独加key3索引
+
+@endmindmap

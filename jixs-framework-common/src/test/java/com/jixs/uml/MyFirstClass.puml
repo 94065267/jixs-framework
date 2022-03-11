@@ -1,0 +1,20 @@
+@startuml
+
+interface IProcessManage
+class ProcessManage
+abstract class AbstractProcess
+class Process
+
+Process --|>AbstractProcess
+ProcessManage --> Process
+ProcessManage ..|> IProcessManage
+
+interface IProcessManage{
+    + static final Integer PAGE_SIZE= 20;
+    + List<PageOut> qqryByPage(PageIn in);
+    + void add(AddProcessIn in);
+    + void modify(ModifyProcessIn in);
+    + void delete(String processId);
+}
+
+@enduml

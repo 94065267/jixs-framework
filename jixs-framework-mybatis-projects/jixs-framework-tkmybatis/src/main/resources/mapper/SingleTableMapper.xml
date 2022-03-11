@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jixs.tkmybatis.mapper.SingleTableMapper">
+  <resultMap id="BaseResultMap" type="com.jixs.tkmybatis.po.SingleTable">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="key1" jdbcType="VARCHAR" property="key1" />
+    <result column="key2" jdbcType="INTEGER" property="key2" />
+    <result column="key3" jdbcType="VARCHAR" property="key3" />
+    <result column="key_part1" jdbcType="VARCHAR" property="keyPart1" />
+    <result column="key_part2" jdbcType="VARCHAR" property="keyPart2" />
+    <result column="key_part3" jdbcType="VARCHAR" property="keyPart3" />
+    <result column="common_field" jdbcType="VARCHAR" property="commonField" />
+  </resultMap>
+</mapper>

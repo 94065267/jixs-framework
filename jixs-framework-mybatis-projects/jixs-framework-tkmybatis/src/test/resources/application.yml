@@ -3,9 +3,9 @@ spring:
   application:
     name: jixs-tkmybatis
   datasource:
-    url: jdbc:mysql://172.18.231.40:8066/iomord?useUnicode=true&characterEncoding=utf-8
-    username: iomadm
-    password: iomadm
+    url: jdbc:mysql://127.0.0.1:13306/jixs?useUnicode=true&characterEncoding=utf-8
+    username: jixs
+    password: jixs@pw
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
       minimum-idle: 1

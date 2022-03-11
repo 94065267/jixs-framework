@@ -15,7 +15,7 @@ public class DateUtil extends cn.hutool.core.date.DateUtil {
      * @param dateStr 日期字符串
      * @return
      */
-    public static String matchs(String dateStr) {
+    public static String match(String dateStr) {
         String result = null;
         if (dateStr.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d+")) {
             result = DateStyle.YYYY_MM_DD_HH_MM_SS_SSS;

@@ -2,15 +2,16 @@ package com.jixs.tkmybatis;
 
 import com.alibaba.fastjson.JSONArray;
 import com.jixs.TkmybatisBootstrap;
+import com.jixs.tkmybatis.mapper.SingleTableMapper;
 import com.jixs.tkmybatis.mapper.TfGsOrderMapper;
 import com.jixs.tkmybatis.mapper.TfSoOrderMapper;
+import com.jixs.tkmybatis.po.SingleTable;
 import com.jixs.tkmybatis.po.TfSoOrder;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.IDynamicTableName;
 
@@ -29,6 +30,8 @@ public class TkmybatisTest {
     private TfGsOrderMapper tfGsOrderMapper;
     @Resource
     private TfSoOrderMapper tfSoOrderMapper;
+    @Resource
+    private SingleTableMapper singleTableMapper;
 
     @Test
     public void qryOrdById() {
@@ -54,6 +57,20 @@ public class TkmybatisTest {
         Example.Criteria criteria = example.createCriteria();
         List<TfSoOrder> list = tfSoOrderMapper.selectByExample(example);
         log.info("order = {}", JSONArray.toJSONString(list));
+    }
+
+    @Test
+    public void insert() {
+        for (int i = 0; i < 10; i++) {
+            SingleTable singleTable = new SingleTable();
+            singleTable.setKey1(String.valueOf(Math.random()));
+//            singleTable.setKey2(10000 - i);
+            singleTable.setKey3(String.valueOf(Math.random()));
+            singleTable.setKeyPart1(singleTable.getKey1() + "-Part1");
+            singleTable.setKeyPart2(singleTable.getKey2() + "-Part2");
+            singleTable.setKeyPart3(singleTable.getKey3() + "-Part3");
+            singleTableMapper.insertSelective(singleTable);
+        }
     }
 
 }
