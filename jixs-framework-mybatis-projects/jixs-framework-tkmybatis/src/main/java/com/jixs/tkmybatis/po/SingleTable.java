@@ -2,7 +2,7 @@ package com.jixs.tkmybatis.po;
 
 import javax.persistence.*;
 
-@Table(name = "single_table")
+@Table(name = "single_table2")
 public class SingleTable {
     @Id
     private Integer id;

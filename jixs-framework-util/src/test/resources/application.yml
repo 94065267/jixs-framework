@@ -1,0 +1,26 @@
+#数据库配置
+spring:
+  application:
+    name: jixs-tkmybatis
+  datasource:
+    url: jdbc:mysql://137.0.17.232:8070/iomord?useUnicode=true&characterEncoding=utf-8
+    username: iomadm
+    password: iomadm
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 10
+#mybatis配置
+mybatis:
+  configuration:
+    #打印sql语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mapper:
+  not-empty: false
+  before: true
+pagehelper:
+  helper-dialect: mysql
+  reasonable: "true"
+  support-methods-arguments: "true"
+  params: count=countSql
+  page-size-zero: "true"

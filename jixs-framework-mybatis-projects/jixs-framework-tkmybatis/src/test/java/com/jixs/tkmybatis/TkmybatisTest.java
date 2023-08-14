@@ -61,14 +61,15 @@ public class TkmybatisTest {
 
     @Test
     public void insert() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10000; i++) {
             SingleTable singleTable = new SingleTable();
-            singleTable.setKey1(String.valueOf(Math.random()));
-//            singleTable.setKey2(10000 - i);
-            singleTable.setKey3(String.valueOf(Math.random()));
-            singleTable.setKeyPart1(singleTable.getKey1() + "-Part1");
-            singleTable.setKeyPart2(singleTable.getKey2() + "-Part2");
-            singleTable.setKeyPart3(singleTable.getKey3() + "-Part3");
+            singleTable.setKey1(String.valueOf(Math.random() * 10000 + 10000));
+            singleTable.setKey2(10000 - i);
+            singleTable.setKey3(String.valueOf(Math.random() * 10000 + 10000));
+            singleTable.setKeyPart1(singleTable.getKey1() + " - Part1");
+            singleTable.setKeyPart2(singleTable.getKey2() + " - Part2");
+            singleTable.setKeyPart3(singleTable.getKey3() + " - Part3");
+            singleTable.setCommonField(String.valueOf(System.currentTimeMillis()));
             singleTableMapper.insertSelective(singleTable);
         }
     }

@@ -1,5 +1,9 @@
 package com.jixs.test;
 
+import com.jixs.spi.SPIInterface;
+
+import java.util.ServiceLoader;
+
 /**
  * 说明
  *
@@ -8,10 +12,9 @@ package com.jixs.test;
  */
 public class Test {
     public static void main(String[] args) {
-        int sum = 0;
-        for (int i = 1; i <= 32; i++) {
-            sum = sum + i;
+        ServiceLoader<SPIInterface> load = ServiceLoader.load(SPIInterface.class);
+        for (SPIInterface ser : load) {
+            System.out.println(ser.handle());
         }
-        System.out.print("sum=" + sum);
     }
 }

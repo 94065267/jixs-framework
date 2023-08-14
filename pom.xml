@@ -13,6 +13,7 @@
         <module>jixs-framework-dubbo-projects</module>
         <module>jixs-framework-mybatis-projects</module>
         <module>jixs-framework-mul-db-project</module>
+        <module>jixs-framework-util</module>
     </modules>
 
     <parent>
@@ -88,17 +89,6 @@
             <id>nexus2</id>
             <name>nexus2</name>
             <url>http://git.si-tech.com.cn:8088/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>nexus3</id>
-            <name>nexus3</name>
-            <url>https://repo.maven.apache.org/maven2</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
