@@ -43,14 +43,17 @@ public class Instruction {
      * @param cmdDisRuleIdPreFix 主键前缀
      * @param subActionIds       需要处理的附加动作集合
      */
-    public void add(String excelFilePath, String sheetName, String cmdDisRuleIdPreFix, List<String> subActionIds) {
+    public void addSubProd(String excelFilePath, String sheetName, String cmdDisRuleIdPreFix, String cmdParamCodePreFix,  List<String> subActionIds) {
         // 读取excel
         Sheet sheet = this.readSheet(excelFilePath, sheetName);
         if (sheet == null) {
             log.error("excel文件{}没有获取到sheet页【{}】：", excelFilePath, sheetName);
             return;
         }
-        System.out.println("最后一行的编号：" + sheet.getLastRowNum());
+        String mainProdId = sheetName.split("_")[0];
+        String mainActionId = sheetName.split("_")[1];
+        log.info("主服务：{}，主动作：{}", mainProdId, mainActionId);
+        log.info("最后一行的编号：{}", sheet.getLastRowNum());
         int countRule = 1;
         int countParam = 1;
         for (int i = 0; i < sheet.getLastRowNum(); i++) {
@@ -62,21 +65,20 @@ public class Instruction {
             List<TdWoCmddisrule> cmddisruleList = new ArrayList<>();
             List<TdWoCmdparam> allParams = new ArrayList<>();
             if ("是".equals(row.getCell(2).getStringCellValue())) {
-                String mainProdId = sheetName.split("_")[0];
-                String mainActionId = sheetName.split("_")[1];
                 String subProdId = row.getCell(0).getStringCellValue();
                 for (String subActionId : subActionIds) {
-                    String cmdDisRuleId = cmdDisRuleIdPreFix + String.format("%04d", countRule++) + subActionId;
-                    String cmdParamCode = "P" + cmdDisRuleIdPreFix + String.format("%03d", countParam++) + subActionId;
-                    String cmdId = subProdId + "_" + subActionId;
+                    String cmdDisRuleId = cmdDisRuleIdPreFix + String.format("%03d", countRule++) + subActionId;
+                    String cmdParamCode = cmdParamCodePreFix + String.format("%03d", countParam++) + subActionId;
                     TdWoCmddisrule cmddisrule = null;
                     List<TdWoCmdparam> params = null;
                     if ("A".equals(subActionId)) {
+                        String cmdId = subProdId + "_1";
                         String paramStr = row.getCell(3).getStringCellValue();
                         cmddisrule = this.getCmddisrule(cmdDisRuleId, mainProdId, mainActionId, subProdId, subActionId, cmdParamCode, cmdId);
                         params = this.getParams(cmdParamCode, paramStr);
                     }
                     if ("R".equals(subActionId)) {
+                        String cmdId = subProdId + "_0";
                         String paramStr = row.getCell(4).getStringCellValue();
                         if (StringUtils.isEmpty(paramStr)) {
                             paramStr = row.getCell(3).getStringCellValue();
@@ -143,7 +145,7 @@ public class Instruction {
         cmddisrule.setProdIdGroup(mainProdId);
         cmddisrule.setDealFlag("0");
         cmddisrule.setProsId("0");
-        cmddisrule.setCmdPriority("1");
+        cmddisrule.setCmdPriority("999");
         cmddisrule.setState("1");
         cmddisrule.setCmdId(cmdId);
         cmddisrule.setCreateStaffId("自动导入");
@@ -168,9 +170,9 @@ public class Instruction {
         for (String temp : set) {
             TdWoCmdparam param = new TdWoCmdparam();
             param.setCmdCode(cmdParamCode);
-            param.setCmdParam(temp);
+            param.setCmdParam(temp.trim());
             param.setState("1");
-            param.setCmdParamSource(temp);
+            param.setCmdParamSource(temp.trim());
             param.setCmdParamType("0");
             param.setCreateStaffId("自动导入");
             param.setCreateTime(new Date());
@@ -178,5 +180,16 @@ public class Instruction {
             list.add(param);
         }
         return list;
+    }
+
+    public void addMainProd(String cmdId, String paramStr, String cmdDisRuleId, String cmdParamCode) {
+        String mainProdId = cmdId.split("_")[0];
+        String mainActionId = cmdId.split("_")[0];
+        TdWoCmddisrule cmddisrule = this.getCmddisrule(cmdDisRuleId, mainProdId, mainActionId, mainProdId, mainActionId, cmdParamCode, cmdId);
+        List<TdWoCmdparam> params = this.getParams(cmdParamCode, paramStr);
+        tdWoCmddisruleMapper.insertSelective(cmddisrule);
+        if (!CollectionUtils.isEmpty(params)) {
+            tdWoCmdparamMapper.insertList(params);
+        }
     }
 }
