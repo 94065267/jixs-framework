@@ -184,7 +184,7 @@ public class Instruction {
 
     public void addMainProd(String cmdId, String paramStr, String cmdDisRuleId, String cmdParamCode) {
         String mainProdId = cmdId.split("_")[0];
-        String mainActionId = cmdId.split("_")[0];
+        String mainActionId = cmdId.split("_")[1];
         TdWoCmddisrule cmddisrule = this.getCmddisrule(cmdDisRuleId, mainProdId, mainActionId, mainProdId, mainActionId, cmdParamCode, cmdId);
         List<TdWoCmdparam> params = this.getParams(cmdParamCode, paramStr);
         tdWoCmddisruleMapper.insertSelective(cmddisrule);
