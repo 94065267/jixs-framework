@@ -1,4 +1,4 @@
-package com.jixs.util.instruction;
+package com.jixs.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jasypt.util.text.BasicTextEncryptor;
