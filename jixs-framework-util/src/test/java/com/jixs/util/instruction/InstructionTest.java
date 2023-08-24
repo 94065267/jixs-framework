@@ -56,10 +56,11 @@ public class InstructionTest {
                 "ISDN|VLRTPLID|SGSNTPLID|DIAMNODETPLID|IMSI|SRVNAME|SEND_FLAG",
                 "ISDN|isVolte|SUBTEMPID|IMSI|NEWHKISDN|OLDHKISDN",
                 "ISDN|SUBTEMPID|VLRTPLID|SGSNTPLID|DIAMNODETPLID|isVolte|opid|TPLID|TPLOPT|SM_SRVNAME|IMSI");
+        String cmdPriority = "111";
         for (int i = 0; i < cmdList.size(); i++) {
             String cmdDisRuleId = "D110000000" + (i + 1);
             String cmdParamCode = "P110000000" + (i + 1);
-            instruction.addMainProd(cmdList.get(i), paramList.get(i), cmdDisRuleId, cmdParamCode);
+            instruction.addMainProd(cmdList.get(i), paramList.get(i), cmdDisRuleId, cmdParamCode, cmdPriority);
         }
     }
 
@@ -71,10 +72,11 @@ public class InstructionTest {
                 "IMSI|SRVNAME|SEND_FLAG",
                 "IMSI|SRVNAME|NEWHKISDN|OLDHKISDN|SEND_FLAG",
                 "ISDN|SUBTEMPID|VLRTPLID|SGSNTPLID|DIAMNODETPLID|TPLID|TPLOPT|SM_SRVNAME|IMSI");
+        String cmdPriority = "111";
         for (int i = 0; i < cmdList.size(); i++) {
             String cmdDisRuleId = "D120000000" + (i + 1);
             String cmdParamCode = "P120000000" + (i + 1);
-            instruction.addMainProd(cmdList.get(i), paramList.get(i), cmdDisRuleId, cmdParamCode);
+            instruction.addMainProd(cmdList.get(i), paramList.get(i), cmdDisRuleId, cmdParamCode, cmdPriority);
         }
     }
 
@@ -83,10 +85,11 @@ public class InstructionTest {
         String filePath = "D:\\Work\\si-tech\\文档\\各个省份\\联通国际\\云B激活升级项目\\指令梳理\\预付费开户主动作附加服务梳理-jixs.xlsx";
         List<String> sheets = Arrays.asList("HK000001_13620", "HK000001_10210", "HK000001_10270");
         List<String> subActionIds = Arrays.asList("A", "R");
+        String cmdPriority = "222";
         for (int i = 0; i < sheets.size(); i++) {
             String cmdDisRuleIdPreFix = "D20000" + (i + 1);
             String cmdParamCodePreFix = "P20000" + (i + 1);
-            instruction.addSubProd(filePath, sheets.get(i), cmdDisRuleIdPreFix, cmdParamCodePreFix, subActionIds);
+            instruction.addSubProd(filePath, sheets.get(i), cmdDisRuleIdPreFix, cmdParamCodePreFix, subActionIds, cmdPriority);
         }
     }
 
@@ -95,10 +98,11 @@ public class InstructionTest {
         String filePath = "D:\\Work\\si-tech\\文档\\各个省份\\联通国际\\云B激活升级项目\\指令梳理\\预付费开户主动作附加服务梳理-jixs2.xlsx";
         List<String> sheets = Arrays.asList("HK000002_13620", "HK000002_10210", "HK000002_10270");
         List<String> subActionIds = Arrays.asList("A", "R");
+        String cmdPriority = "222";
         for (int i = 0; i < sheets.size(); i++) {
             String cmdDisRuleIdPreFix = "D21000" + (i + 1);
             String cmdParamCodePreFix = "P21000" + (i + 1);
-            instruction.addSubProd(filePath, sheets.get(i), cmdDisRuleIdPreFix, cmdParamCodePreFix, subActionIds);
+            instruction.addSubProd(filePath, sheets.get(i), cmdDisRuleIdPreFix, cmdParamCodePreFix, subActionIds, cmdPriority);
         }
     }
 

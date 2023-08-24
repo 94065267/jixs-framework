@@ -43,7 +43,7 @@ public class Instruction {
      * @param cmdDisRuleIdPreFix 主键前缀
      * @param subActionIds       需要处理的附加动作集合
      */
-    public void addSubProd(String excelFilePath, String sheetName, String cmdDisRuleIdPreFix, String cmdParamCodePreFix,  List<String> subActionIds) {
+    public void addSubProd(String excelFilePath, String sheetName, String cmdDisRuleIdPreFix, String cmdParamCodePreFix, List<String> subActionIds, String cmdPriority) {
         // 读取excel
         Sheet sheet = this.readSheet(excelFilePath, sheetName);
         if (sheet == null) {
@@ -74,7 +74,7 @@ public class Instruction {
                     if ("A".equals(subActionId)) {
                         String cmdId = subProdId + "_1";
                         String paramStr = row.getCell(3).getStringCellValue();
-                        cmddisrule = this.getCmddisrule(cmdDisRuleId, mainProdId, mainActionId, subProdId, subActionId, cmdParamCode, cmdId);
+                        cmddisrule = this.getCmddisrule(cmdDisRuleId, mainProdId, mainActionId, subProdId, subActionId, cmdParamCode, cmdId, cmdPriority);
                         params = this.getParams(cmdParamCode, paramStr);
                     }
                     if ("R".equals(subActionId)) {
@@ -83,7 +83,7 @@ public class Instruction {
                         if (StringUtils.isEmpty(paramStr)) {
                             paramStr = row.getCell(3).getStringCellValue();
                         }
-                        cmddisrule = this.getCmddisrule(cmdDisRuleId, mainProdId, mainActionId, subProdId, subActionId, cmdParamCode, cmdId);
+                        cmddisrule = this.getCmddisrule(cmdDisRuleId, mainProdId, mainActionId, subProdId, subActionId, cmdParamCode, cmdId, cmdPriority);
                         params = this.getParams(cmdParamCode, paramStr);
                     }
                     if (cmddisrule != null) {
@@ -130,7 +130,7 @@ public class Instruction {
         return workbook.getSheet(sheetName);
     }
 
-    private TdWoCmddisrule getCmddisrule(String cmdRuleId, String mainProdId, String mainActionId, String subProdId, String subActionId, String cmdParamCode, String cmdId) {
+    private TdWoCmddisrule getCmddisrule(String cmdRuleId, String mainProdId, String mainActionId, String subProdId, String subActionId, String cmdParamCode, String cmdId, String cmdPriority) {
         TdWoCmddisrule cmddisrule = new TdWoCmddisrule();
         cmddisrule.setCmdRuleId(cmdRuleId);
         cmddisrule.setLocalNetId("0");
@@ -145,7 +145,7 @@ public class Instruction {
         cmddisrule.setProdIdGroup(mainProdId);
         cmddisrule.setDealFlag("0");
         cmddisrule.setProsId("0");
-        cmddisrule.setCmdPriority("999");
+        cmddisrule.setCmdPriority(cmdPriority);
         cmddisrule.setState("1");
         cmddisrule.setCmdId(cmdId);
         cmddisrule.setCreateStaffId("自动导入");
@@ -182,10 +182,10 @@ public class Instruction {
         return list;
     }
 
-    public void addMainProd(String cmdId, String paramStr, String cmdDisRuleId, String cmdParamCode) {
+    public void addMainProd(String cmdId, String paramStr, String cmdDisRuleId, String cmdParamCode, String cmdPriority) {
         String mainProdId = cmdId.split("_")[0];
         String mainActionId = cmdId.split("_")[1];
-        TdWoCmddisrule cmddisrule = this.getCmddisrule(cmdDisRuleId, mainProdId, mainActionId, mainProdId, mainActionId, cmdParamCode, cmdId);
+        TdWoCmddisrule cmddisrule = this.getCmddisrule(cmdDisRuleId, mainProdId, mainActionId, mainProdId, mainActionId, cmdParamCode, cmdId, cmdPriority);
         List<TdWoCmdparam> params = this.getParams(cmdParamCode, paramStr);
         tdWoCmddisruleMapper.insertSelective(cmddisrule);
         if (!CollectionUtils.isEmpty(params)) {
