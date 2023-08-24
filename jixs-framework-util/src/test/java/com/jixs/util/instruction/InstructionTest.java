@@ -2,6 +2,7 @@ package com.jixs.util.instruction;
 
 import com.sitech.iom.Bootstrap;
 import com.sitech.iom.Instruction;
+import com.sitech.iom.wo.dao.mapper.TdWoCmddisruleMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.Test;
@@ -25,6 +26,8 @@ import java.util.List;
 public class InstructionTest {
     @Resource
     private Instruction instruction;
+    @Resource
+    private TdWoCmddisruleMapper tdWoCmddisruleMapper;
 
     @Test
     public void test() {
@@ -42,16 +45,17 @@ public class InstructionTest {
             log.info("主服务：{}，主动作：{}", mainProdId, mainActionId);
             log.info("最后一行的编号：{}", sheet.getLastRowNum());
         }
+        tdWoCmddisruleMapper.selectByPrimaryKey("D1100000001");
     }
 
     @Test
     public void mainProd1() {
         List<String> cmdList = Arrays.asList("HK000001_13620", "HK000001_10210", "HK000001_13622", "HK000001_10270");
         List<String> paramList = Arrays.asList(
-                "ISDN|SUBTEMPID|VLRTPLID|SGSNTPLID|DIAMNODETPLID|isVolte|opid|TPLID|IMSI|SRVNAME|SUBIMSI",
+                "ISDN|SUBTEMPID|VLRTPLID|SGSNTPLID|DIAMNODETPLID|isVolte|opid|TPLID|TPLOPT|SM_SRVNAME|IMSI|SUBIMSI",
                 "ISDN|VLRTPLID|SGSNTPLID|DIAMNODETPLID|IMSI|SRVNAME|SEND_FLAG",
-                "ISDN|isVolte|SUBTEMPID|IMSI|NEWHKISDN|OLDHKISDN|SRVNAME|SEND_FLAG",
-                "ISDN|SUBTEMPID|VLRTPLID|SGSNTPLID|DIAMNODETPLID|isVolte|opid|TPLID|IMSI|SRVNAME");
+                "ISDN|isVolte|SUBTEMPID|IMSI|NEWHKISDN|OLDHKISDN",
+                "ISDN|SUBTEMPID|VLRTPLID|SGSNTPLID|DIAMNODETPLID|isVolte|opid|TPLID|TPLOPT|SM_SRVNAME|IMSI");
         for (int i = 0; i < cmdList.size(); i++) {
             String cmdDisRuleId = "D110000000" + (i + 1);
             String cmdParamCode = "P110000000" + (i + 1);
@@ -84,7 +88,6 @@ public class InstructionTest {
             String cmdParamCodePreFix = "P20000" + (i + 1);
             instruction.addSubProd(filePath, sheets.get(i), cmdDisRuleIdPreFix, cmdParamCodePreFix, subActionIds);
         }
-
     }
 
     @Test
@@ -97,7 +100,6 @@ public class InstructionTest {
             String cmdParamCodePreFix = "P21000" + (i + 1);
             instruction.addSubProd(filePath, sheets.get(i), cmdDisRuleIdPreFix, cmdParamCodePreFix, subActionIds);
         }
-
     }
 
 }

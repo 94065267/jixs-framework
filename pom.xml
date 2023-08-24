@@ -14,6 +14,7 @@
         <module>jixs-framework-mybatis-projects</module>
         <module>jixs-framework-mul-db-project</module>
         <module>jixs-framework-util</module>
+        <module>jixs-framwork-cache-local</module>
     </modules>
 
     <parent>
